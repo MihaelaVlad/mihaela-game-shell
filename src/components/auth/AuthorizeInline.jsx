@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-export const AuthorizedLayout = ({ children }) => {
+export const AuthorizeInline = ({ children }) => {
   const { authenticated } = useSelector(({ auth }) => {
     const { authenticated } = auth;
 
@@ -8,7 +8,7 @@ export const AuthorizedLayout = ({ children }) => {
   });
 
   if (!authenticated) {
-    return <div className="p-4 text-center">Please login first</div>;
+    return <></>;
   }
 
   return <>{children}</>;

@@ -1,8 +1,9 @@
 import { GiAbstract101 } from 'react-icons/gi';
+import { RiUser5Fill } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logOut } from '../../../store/actions/authActions';
-import { GoogleLogin } from '../../auth/GoogleLogin';
+import { unsetUser } from '../../../store/actions/authActions';
+import { GoogleLogin } from '../../auth';
 import { Button } from '../ui';
 
 export const Header = () => {
@@ -24,16 +25,24 @@ export const Header = () => {
 
       <div>
         {authenticated ? (
-          <Button
-            type="button"
-            onClick={() => {
-              dispatch(logOut());
-            }}
-            skin="primaryInverted"
-            title="Log out"
-          >
-            Log out
-          </Button>
+          <div className="flex gap-2">
+            <Link to="/profile" title="Profile">
+              <Button element="span">
+                <RiUser5Fill className="inline-block"></RiUser5Fill>
+              </Button>
+            </Link>
+
+            <Button
+              type="button"
+              onClick={() => {
+                dispatch(unsetUser());
+              }}
+              skin="primaryInverted"
+              title="Log out"
+            >
+              Log out
+            </Button>
+          </div>
         ) : (
           <GoogleLogin></GoogleLogin>
         )}
